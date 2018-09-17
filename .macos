@@ -660,7 +660,7 @@ defaults write com.apple.terminal SecureKeyboardEntry -bool true
 # Disable the annoying line marks
 defaults write com.apple.Terminal ShowLineMarks -int 0
 
-# Install the Solarized Dark theme for iTerm
+# Install the Argonaut Dark theme for iTerm
 open "${HOME}/init/Argonaut.itermcolors"
 
 # Don’t display the annoying prompt when quitting iTerm
