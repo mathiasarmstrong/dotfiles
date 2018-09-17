@@ -83,6 +83,30 @@ jscbin="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources
 [ -e "${jscbin}" ] && alias jsc="${jscbin}";
 unset jscbin;
 
+alias fs="du -hs "
+
+alias ccat="pygmentize -g"
+
+alias kj="killjobs"
+killjobs(){
+  kill $(jobs | awk '{b=substr($1,2,1); c="%"; print c b}')
+}
+
+# This is just for testing the above command
+# startjobs(){
+#     COUNTER=0
+#     until [ $COUNTER == 10 ]; do
+#         sleep 2000 &
+#         let COUNTER+=1
+#     done
+#     kill %2
+#     kill %4
+# }
+
+zeppelin(){
+  "$(brew --prefix apache-zeppelin)/bin/zeppelin-daemon.sh" "$@"
+}
+
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
 
@@ -92,7 +116,12 @@ alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 # Empty the Trash on all mounted volumes and the main HDD.
 # Also, clear Apple’s System Logs to improve shell startup speed.
 # Finally, clear download history from quarantine. https://mths.be/bum
-alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
+emptytrash() {
+  sudo rm -rfv /Volumes/*/.Trashes
+  sudo rm -rfv ~/.Trash
+  sudo rm -rfv /private/var/log/asl/*.asl
+  sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'
+}
 
 # Show/hide hidden files in Finder
 alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
@@ -108,11 +137,6 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 # Merge PDF files
 # Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
 alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
-
-# Disable Spotlight
-alias spotoff="sudo mdutil -a -i off"
-# Enable Spotlight
-alias spoton="sudo mdutil -a -i on"
 
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
 alias plistbuddy="/usr/libexec/PlistBuddy"
@@ -149,3 +173,270 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+extract () {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)        tar xjf $1        ;;
+      *.tar.gz)         tar xzf $1        ;;
+      *.bz2)            bunzip2 $1        ;;
+      *.rar)            unrar x $1        ;;
+      *.gz)             gunzip $1         ;;
+      *.tar)            tar xf $1         ;;
+      *.tbz2)           tar xjf $1        ;;
+      *.tgz)            tar xzf $1        ;;
+      *.zip)            unzip $1          ;;
+      *.Z)              uncompress $1     ;;
+      *.7z)             7zr e $1          ;;
+      *)                echo "'$1' cannot be extracted via extract()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+whatsOnPort () {
+  for port in "$@"
+  do
+    lsof -n -i:"$port" | grep LISTEN;
+    sleep 1
+  done
+}
+
+###########################
+# Docker Helper Functions #
+###########################
+
+start-docker(){
+  docker-machine start
+  eval "$(docker-machine env)"
+}
+
+dbash() {
+  docker exec -ti "$(did $1)" bash
+}
+
+did() {
+  dpa | grep $1 | awk '{ print $1 }'
+}
+
+dpa() {
+  docker ps -a
+}
+
+diclean() {
+  docker rmi -f $(docker images --filter 'dangling=true' -q --no-trunc)
+}
+
+dstart() {
+  echo "restarting $1"
+  docker restart "$(did $1)" &> /dev/null;
+  sleep 1;
+  echo "$(dstatus $1)";
+}
+
+dstop() {
+  docker stop "$(did $1)"
+}
+
+dstatus () {
+  if [ $# -eq 0 ]; then
+    docker ps -a --format 'table {{ .Names }}\t{{ .ID }}\t{{ .Status }}'
+  else
+    local mystatus="$(docker ps -a | grep $1 | awk '{$3=$4=$5=$6=$12=$13=""; print $0}')";
+    local tempstatus="$(echo $mystatus | awk '{print $3}')";
+    local is_open=0;
+    echo "$mystatus"
+    [[ "$tempstatus" == 'Up' ]] && local is_open=1;
+    return "$is_open"
+  fi
+}
+
+dclean() {
+  docker rm -v $(docker ps -q -f status=exited)
+}
+
+dlogs() {
+  dstatus "$1";
+  local continue_when="$?";
+  local when_count=0;
+  if [[ "${@:2}" == "-f" ]]; then
+    local last_start=$(date +%s)
+    local attempt_num=0
+    while [ $when_count -lt 7 ];do
+      if [[ true || $* == *--since-restart* ]]; then
+        docker logs "$(did $1)" "${@:2}" --since "$last_start";
+      else
+        docker logs "$(did $1)" "${@:2}";
+      fi
+      echo "***";
+      echo "* Restarting in 5 seconds";
+      echo "***";
+
+      sleep 5;
+      dstatus "$1";
+      if [[ "$?" -ne "0" ]]; then
+        when_count=0;
+      else
+        when_count="$when_count"+1;
+      fi
+    done
+
+    echo "***";
+    echo "* Exiting because $1 is down";
+    echo "***";
+  else
+    docker logs "$(did $1)" "${@:2}"
+  fi
+}
+
+dnuke() {
+  docker rm `docker ps -aq --no-trunc --filter "status=exited"`
+  docker rmi `docker images --filter 'dangling=true' -q --no-trunc`
+  docker rm $(docker ps -a -q)
+  docker rmi $(docker images -q)
+}
+
+####################
+# fs Watch Helpers #
+####################
+
+declare -i last_called=0
+declare -i throttle_by=5
+
+@throttle() {
+  local -i now=$(date +%s)
+  if (($now - $last_called >= $throttle_by))
+  then
+    "$@"
+  fi
+  last_called=$(date +%s)
+}
+
+
+@debounce() {
+  local pid=$$
+  if [[ ! -f ~/.executing-$pid ]]
+  then
+    touch ~/.executing-$pid
+    "$@"
+    retVal="$?"
+    {
+      sleep "$throttle_by"
+      if [[ -f ~/.on-finish-$pid ]]
+      then
+        "$@"
+        rm -f ~/.on-finish-$pid
+      fi
+      rm -f ~/.executing-$pid
+    } &
+    return $retVal
+  elif [[ ! -f ~/.on-finish-$pid ]]
+  then
+    touch ~/.on-finish-$pid
+  fi
+}
+
+watch() {
+  if [[ ! "$(which fswatch)" ]]; then
+    echo please install fs watch with
+    echo brew install fswatch
+    exit 0
+  fi
+  local localpath="$1"; shift
+  local rest="$*"
+  echo watching "$localpath"
+  fswatch -0 -o --event Updated "$localpath" | xargs -0 -I file zsh -c "@debounce eval $rest";
+}
+
+# AMP Specific stuff
+
+watch-service() {
+  if [ -d $AMP_SAFARI_PATH/$1 ]; then
+    local olddir=$(pwd)
+    echo 'Starting watcher on service:' $1
+    watch $AMP_SAFARI_PATH/$1 dstart $1
+  else
+    echo $fg_bold[red] 'Safari:'$1 'Does not exist - skipping' $reset_color
+  fi
+}
+
+prod-tunnels() {
+  ssh -N -A -L 9042:10.0.41.196:9042 djdaniels@bastion.sandbox-amp.net
+  ssh -N -L 9200:internal-PROD-elb-elasticsearch-463607781.us-west-2.elb.amazonaws.com:9200 djdaniels@bastion.sandbox-amp.net
+}
+
+
+es-sb() {
+  ssh -N -L 9200:internal-sandbox-elb-es-02-240508465.us-west-2.elb.amazonaws.com:9200 djdaniels@bastion.sandbox-amp.net
+}
+
+es2-sb() {
+  ssh -N -L 9300:internal-sandbox-elb-elasticsearch-2135334639.us-west-2.elb.amazonaws.com:9200 djdaniels@bastion-sandbox.sandbox-amp.net
+}
+
+cass-sb() {
+  # ssh -N -A -L 9042:10.0.41.86:9042 djdaniels@bastion.sandbox-amp.net
+  ssh -N -A -L 9042:10.0.43.6:9042 -o GatewayPorts=yes djdaniels@bastion.sandbox-amp.net
+}
+
+tunnel-status() {
+  echo 'ElasticSearch'
+  whatsOnPort 9200
+  echo 'ElasticSearch 2'
+  whatsOnPort 9300
+  echo 'Cassandra'
+  whatsOnPort 9042
+}
+
+spider-tunnels () {
+  es-sb &
+  es2-sb &
+  cass-sb &
+}
+
+spider-status() {
+  dstatus
+  echo $fg[green] 'SSH Tunnels' $fg[reset]
+  tunnel-status
+}
+
+spider () {
+  case "$1" in
+    status)
+      spider-status
+      ;;
+    tunnels)
+      spider-tunnels
+      ;;
+    watch)
+      watch-service $2
+      ;;
+    *)
+      if [ ! -z $1 ]; then
+        local oldpwd=$(pwd)
+        echo 'Changing directories'
+        cd $AMP_SAFARI_PATH/spider
+        ./spider "$@"
+        cd ${oldpwd}
+      else
+        echo 'What do you want to do?'
+      fi
+  esac
+}
+
+#########################
+# CANIS MAJORIS ALIASES #
+#########################
+
+canis () {
+  if [ ! -z $1 ]; then
+    local oldpwd=$(pwd)
+    echo 'Changing directories'
+    cd $AMP_CANIS_PATH
+    npm run $1
+    cd ${oldpwd}
+  else
+    echo 'What do you want to do?'
+  fi
+}
