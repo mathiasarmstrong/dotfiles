@@ -68,6 +68,7 @@ brew cask install --appdir="/Applications" font-hack-nerd-font
 
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
 brew install aircrack-ng
+brew install stow
 brew install bfg
 brew install binutils
 brew install binwalk
