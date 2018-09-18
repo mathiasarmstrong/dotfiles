@@ -1,6 +1,14 @@
 # Panda dotfiles
 
-![Screenshot of my shell prompt](https://i.imgur.com/EkEtphC.png)
+Instructions for deploying dotfiles
+
+`cd ~/dotfiles`
+It is critical that dotfiles is a direct child of ~ (or change the stow command accordingly).
+`stow virtual-home`
+
+When updating with git things could break... maybe- or not.  Tell me when you find out.
+
+# Deprecated Instructions
 
 ## Installation
 

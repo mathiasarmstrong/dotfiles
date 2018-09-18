@@ -3,6 +3,7 @@
 # Make vim the default editor.
 export EDITOR='vim';
 
+# Amp Specific Endpoints
 export AMP_SAFARI_PATH=~/Documents/code/amp-v3/amp-modules
 export AMP_CANIS_PATH=$AMP_SAFARI_PATH/canis-majoris
 

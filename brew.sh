@@ -24,10 +24,9 @@ brew install gnu-sed --with-default-names # Install GNU `sed`, overwriting the b
 # Install Bash 4. #
 ###################
 brew install bash
-if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
-	echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
-	chsh -s /usr/local/bin/bash; # Switch to using brew-installed bash as default shell
-fi;
+# if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
+# 	echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
+# fi;
 brew install bash-completion2
 
 brew install zsh
@@ -63,6 +62,7 @@ brew install sfnt2woff-zopfli
 brew install woff2
 brew install fontconfig
 brew install freetype
+# TODO: package zsh depedencies into a pre-procedure
 brew cask install --appdir="/Applications" font-3270-nerd-font
 brew cask install --appdir="/Applications" font-hack-nerd-font
 

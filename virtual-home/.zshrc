@@ -94,11 +94,17 @@ zplug "HaleTom/89ffe32783f89f403bba96bd7bcd1263", \
 
 zplug "iam4x/zsh-iterm-touchbar"
 
-# THEME Configuration
-source ~/.powerline9k_cfg
-zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+#######################
+# THEME Configuration #
+#######################
+# Autoload prompt if not in interactive
+if [[ $- = *i* ]]; then
+	source ~/.powerline9k_cfg
+	zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+	# zplug "nojhan/liquidprompt" use:'(*).sh'
+fi
 
-# Auto install stuff
+# Auto install stuff if needed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
