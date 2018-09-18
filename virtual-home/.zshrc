@@ -61,7 +61,6 @@ zplug "lukechilds/zsh-nvm"
 # auto-pipenv.zsh
 zplug "djdaniels90/759dc65d7775f76e5117337b59dc4833", from:gist
 zplug "plugins/pyenv", from:oh-my-zsh
-# zplug "plugins/pipenv", from:oh-my-zsh
 zplug "paulmelnikow/zsh-startup-timer"
 
 if [ $commands[kubectl] ]; then
