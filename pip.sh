@@ -18,3 +18,7 @@ function install_data_analysis {
 install_python_env
 install_code_analysis
 install_data_analysis
+
+# global deps
+pip install pylint
+pip install psutil

@@ -5,7 +5,7 @@ export PATH="/usr/local/sbin:$PATH"
 export ZPLUG_HOME=/usr/local/opt/zplug
 export PYENV_ROOT="$HOME/.pyenv"
 
-eval $(docker-machine env) &
+# eval $(docker-machine env) &
 
 source $ZPLUG_HOME/init.zsh
 # We want bash specific ones overwritten
@@ -43,6 +43,7 @@ zplug "plugins/npm", from:oh-my-zsh
 zplug "plugins/brew", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
 zplug "plugins/docker-machine", from:oh-my-zsh
+zplug "plugins/autojump", from:oh-my-zsh
 # https://github.com/zsh-users/zsh-autosuggestions requires brew
 zplug "zsh-users/zsh-autosuggestions"
 # https://github.com/zsh-users/zsh-completions requires brew
@@ -58,7 +59,6 @@ export NVM_AUTO_USE=true
 export NVM_LAZY_LOAD=true
 zplug "lukechilds/zsh-nvm"
 
-# auto-pipenv.zsh
 zplug "djdaniels90/759dc65d7775f76e5117337b59dc4833", from:gist
 zplug "plugins/pyenv", from:oh-my-zsh
 zplug "paulmelnikow/zsh-startup-timer"
@@ -94,17 +94,13 @@ zplug "HaleTom/89ffe32783f89f403bba96bd7bcd1263", \
 
 zplug "iam4x/zsh-iterm-touchbar"
 
-#######################
-# THEME Configuration #
-#######################
-# Autoload prompt if not in interactive
-if [[ $- = *i* ]]; then
-	source ~/.powerline9k_cfg
-	zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
-	# zplug "nojhan/liquidprompt" use:'(*).sh'
-fi
+# THEME Configuration
+# source ~/.powerline9k_cfg
+# zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
+zplug "themes/robbyrussell", from:oh-my-zsh
 
-# Auto install stuff if needed
+# Auto install stuff
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -124,4 +120,4 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # Show splash screen
-neofetch
+# neofetch

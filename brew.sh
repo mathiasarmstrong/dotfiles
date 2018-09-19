@@ -175,6 +175,8 @@ brew install autoconf
 brew install brotli
 brew install cairo
 brew install flow
+brew install pyenv
+brew install pyenv-virtualenv
 
 brew cask install --appdir="/Applications" osxfuse
 # brew cask install --appdir="/Applications" hazel
