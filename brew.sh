@@ -176,12 +176,12 @@ brew install brotli
 brew install cairo
 brew install flow
 
+brew cask install --appdir="/Applications" istat-menus
 brew cask install --appdir="/Applications" osxfuse
 brew cask install --appdir="/Applications" hazel
 brew cask install --appdir="/Applications" 1password
 brew cask install --appdir="/Applications" battle-net
 brew cask install --appdir="/Applications" daisydisk
-brew cask install --appdir="/Applications" istat-menus
 brew cask install --appdir="/Applications" microsoft-office
 brew cask install --appdir="/Applications" veracrypt
 brew cask install --appdir="/Applications" airmail-beta
