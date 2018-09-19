@@ -55,22 +55,21 @@ HELPDIR=/usr/local/share/zsh/help
 
 # zplug "plugins/rvm", from:oh-my-zsh, lazy:1
 export NVM_AUTO_USE=true
-export NVM_LAZY_LOAD=true
 zplug "lukechilds/zsh-nvm"
 
 # auto-pipenv.zsh
-zplug "djdaniels90/759dc65d7775f76e5117337b59dc4833", from:gist
-zplug "plugins/pyenv", from:oh-my-zsh
+# zplug "djdaniels90/759dc65d7775f76e5117337b59dc4833", from:gist
+# zplug "plugins/pyenv", from:oh-my-zsh
 zplug "paulmelnikow/zsh-startup-timer"
 
 if [ $commands[kubectl] ]; then
 	zplug "plugins/kubectl", from:oh-my-zsh
 fi
 
-zplug "plugins/pip", from:oh-my-zsh
-[ -z "${PIPENV_ACTIVE}" ] && {
-    zplug "plugins/virtualenvwrapper", from:oh-my-zsh
-}
+# zplug "plugins/pip", from:oh-my-zsh
+# [ -z "${PIPENV_ACTIVE}" ] && {
+#     zplug "plugins/virtualenvwrapper", from:oh-my-zsh
+# }
 zplug "tysonwolker/iterm-tab-colors"
 
 zplug "zlsun/solarized-man"
@@ -117,11 +116,11 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # Then, source plugins and add commands to $PATH
 zplug load
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-  # source $(pyenv root)/completions/pyenv.zsh
-  pyenv rehash
-fi
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+#   # source $(pyenv root)/completions/pyenv.zsh
+#   pyenv rehash
+# fi
 
 # Show splash screen
 neofetch
