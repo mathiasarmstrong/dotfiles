@@ -1,0 +1,111 @@
+"*":
+  Hydrogen:
+    debug: true
+    languageMappings: "{\"Babel ES6 Javascript\": \"javascript\" }"
+    startDir: "dirOfFile"
+  "atom-beautify":
+    general:
+      _analyticsUserId: "114fd150-bb67-4415-b5e1-3055e4955b58"
+  "atom-discord":
+    behaviour:
+      alternativeIcon: "atom-5"
+    privacy: {}
+  "atom-python-run":
+    consoleLog: false
+  "atom-ternjs":
+    guess: false
+    inlineFnCompletion: false
+    inlineFnCompletionDocumentation: true
+    useSnippets: true
+  autocomplete:
+    includeCompletionsFromAllBuffers: true
+  "autocomplete-modules":
+    babelPluginModuleResolver: true
+    webpackConfigFilename: "./tools/webpack.config.js"
+  "autocomplete-paths":
+    enableHtmlSupport: true
+    suggestionPriority: 3
+  "autocomplete-plus":
+    enableBuiltinProvider: false
+    includeCompletionsFromAllBuffers: false
+  "autocomplete-python":
+    useKite: false
+  "color-picker":
+    automaticReplace: true
+    preferredFormat: "HEX"
+  core:
+    disabledPackages: [
+      "language-javascript"
+      "atom-ide-ui"
+      "linter-pyflakes"
+      "linter-flow"
+      "flow-ide"
+      "linter-sass-lint"
+      "terminal-plus"
+      "pane-layout-plus"
+    ]
+    projectHome: "/Users/panda/code"
+    telemetryConsent: "limited"
+    themes: [
+      "seti-ui"
+      "seti-syntax"
+    ]
+    titleBar: "custom"
+    warnOnLargeFileLimit: 10
+  editor:
+    preferredLineLength: 120
+  "exception-reporting":
+    userId: "d02bacd7-9c5e-41a3-aad3-5c09757c194a"
+  "file-types":
+    $caseSensitive: true
+  filesize:
+    UseDecimal: true
+  "flow-ide": {}
+  fonts:
+    fontFamily: "Hack"
+  "git-blame":
+    columnWidth: 340
+  "js-hyperclick":
+    jumpToImport: true
+  linter:
+    lintOnChangeInterval: 10000
+  "linter-flake8":
+    executablePath: "$PROJECT/.venv/bin/flake8"
+    maxLineLength: 120
+  "linter-flow":
+    executablePath: "./node_modules/.bin/flow"
+  "linter-pyflakes": {}
+  "linter-pylint":
+    rcFile: "%p/.pylintrc"
+  "linter-ui-default":
+    alwaysTakeMinimumSpace: true
+    panelHeight: 209
+    showPanel: true
+    showProviderName: true
+    statusBarRepresents: "Current File"
+  "markdown-writer":
+    fileExtension: ".md"
+  "python-autopep8":
+    formatOnSave: true
+    maxLineLength: 120
+  "remote-ftp":
+    connector:
+      autoUploadOnSave: "only when connected"
+  script: {}
+  "seti-syntax":
+    dynamicColor: false
+  "seti-ui":
+    compactView: true
+    disableAnimations: true
+    themeColor: "Green"
+  "sync-settings":
+    _lastBackupHash: "2bbc99525dacb87ce87feb8242b4797cbe4606ce"
+    gistId: "a1ca80026b6f0c19f31ea97104de6a6f"
+    personalAccessToken: ""
+  "todo-show": {}
+  welcome:
+    showOnStartup: false
+  "xatom-debug": {}
+".breakpoints.hydrogen":
+  editor:
+    autoIndentOnPaste: false
