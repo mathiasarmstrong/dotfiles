@@ -176,6 +176,7 @@ brew install brotli
 brew install cairo
 brew install flow
 brew install pyenv
+brew install autojump
 brew install pyenv-virtualenv
 
 brew cask install --appdir="/Applications" osxfuse

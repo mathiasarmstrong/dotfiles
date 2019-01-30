@@ -364,22 +364,22 @@ watch-service() {
 }
 
 prod-tunnels() {
-  ssh -N -A -L 9042:10.0.41.196:9042 djdaniels@bastion.sandbox-amp.net
-  ssh -N -L 9200:internal-PROD-elb-elasticsearch-463607781.us-west-2.elb.amazonaws.com:9200 djdaniels@bastion.sandbox-amp.net
+  ssh -N -A -L 9042:10.0.41.196:9042 jeredmccullough@bastion.sandbox-amp.net
+  ssh -N -L 9200:internal-PROD-elb-elasticsearch-463607781.us-west-2.elb.amazonaws.com:9200 jeredmccullough@bastion.sandbox-amp.net
 }
 
 
 es-sb() {
-  ssh -N -L 9200:internal-sandbox-elb-es-02-240508465.us-west-2.elb.amazonaws.com:9200 djdaniels@bastion.sandbox-amp.net
+  ssh -N -L 9200:internal-sandbox-elb-es-02-240508465.us-west-2.elb.amazonaws.com:9200 jeredmccullough@bastion.sandbox-amp.net
 }
 
 es2-sb() {
-  ssh -N -L 9300:internal-sandbox-elb-elasticsearch-2135334639.us-west-2.elb.amazonaws.com:9200 djdaniels@bastion-sandbox.sandbox-amp.net
+  ssh -N -L 9300:internal-sandbox-elb-elasticsearch-2135334639.us-west-2.elb.amazonaws.com:9200 jeredmccullough@bastion-sandbox.sandbox-amp.net
 }
 
 cass-sb() {
-  # ssh -N -A -L 9042:10.0.41.86:9042 djdaniels@bastion.sandbox-amp.net
-  ssh -N -A -L 9042:10.0.43.6:9042 -o GatewayPorts=yes djdaniels@bastion.sandbox-amp.net
+  # ssh -N -A -L 9042:10.0.41.86:9042 jeredmccullough@bastion.sandbox-amp.net
+  ssh -N -A -L 9042:10.0.43.6:9042 -o GatewayPorts=yes jeredmccullough@bastion.sandbox-amp.net
 }
 
 tunnel-status() {
@@ -441,4 +441,8 @@ canis () {
   else
     echo 'What do you want to do?'
   fi
+}
+
+run_safari_tests(){
+	nosetests --with-coverage --cover-tests --cover-branches --cover-erase --cover-package=app -v tests
 }

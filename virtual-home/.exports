@@ -3,7 +3,7 @@
 # Make vim the default editor.
 export EDITOR='vim';
 
-export AMP_SAFARI_PATH=~/Documents/code/amp-v3/amp-modules
+export AMP_SAFARI_PATH=~/code/ampush
 export AMP_CANIS_PATH=$AMP_SAFARI_PATH/canis-majoris
 
 # Enable persistent REPL history for `node`.
@@ -35,3 +35,4 @@ export MANPAGER='less -X';
 # Avoid issues with `gpg` as installed via Homebrew.
 # https://stackoverflow.com/a/42265848/96656
 export GPG_TTY=$(tty);
+export DEV_CONFIG_DIR='/Users/Jered/code/ampush/safari/ocelot_service/local_config'

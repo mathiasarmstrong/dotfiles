@@ -174,8 +174,8 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 [user]
-	email = djdanielsh@gmail.com
-	name = Commando Panda
+	email = jered.mccullough@gmail.com
+	name = Jered McCullough
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 

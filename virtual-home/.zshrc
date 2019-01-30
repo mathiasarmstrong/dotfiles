@@ -56,10 +56,10 @@ HELPDIR=/usr/local/share/zsh/help
 
 # zplug "plugins/rvm", from:oh-my-zsh, lazy:1
 export NVM_AUTO_USE=true
-export NVM_LAZY_LOAD=true
+export NVM_LAZY_LOAD=false
 zplug "lukechilds/zsh-nvm"
 
-zplug "djdaniels90/759dc65d7775f76e5117337b59dc4833", from:gist
+zplug "mathiasarmstrong/eba57f06bb33c3a8b4319a341c6fb309", from:gist
 zplug "plugins/pyenv", from:oh-my-zsh
 zplug "paulmelnikow/zsh-startup-timer"
 
@@ -97,7 +97,6 @@ zplug "iam4x/zsh-iterm-touchbar"
 # THEME Configuration
 # source ~/.powerline9k_cfg
 # zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
-zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
 zplug "themes/robbyrussell", from:oh-my-zsh
 
 # Auto install stuff
