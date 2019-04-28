@@ -24,7 +24,7 @@ else # macOS `ls`
 	export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
 fi
 
-alias chrome-insecure="open -a Google\ Chrome --args --disable-web-security --allow-running-insecure-content"
+alias chrome-insecure="open -a Google\ Chrome --args --disable-web-security --allow-running-insecure-content --user-data-dir=''"
 
 alias k8="kubectl "
 alias mk8="minikube "
@@ -38,7 +38,7 @@ alias la="ls -laF ${colorflag}"
 # List only directories
 alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 
-alias docker-link="docker-machine env && eval $(docker-machine env)"
+alias docker-link="eval $(docker-machine env)"
 
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"

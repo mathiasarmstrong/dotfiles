@@ -49,6 +49,7 @@ zplug "paulmelnikow/zsh-startup-timer"
 
 if [ $commands[kubectl] ]; then
 	zplug "plugins/kubectl", from:oh-my-zsh
+	source <(kubectl completion zsh)
 fi
 
 zplug "plugins/virtualenvwrapper", from:oh-my-zsh
@@ -63,14 +64,28 @@ zplug "zlsun/solarized-man"
 zplug "bric3/nice-exit-code"
 zplug "arzzen/calc.plugin.zsh"
 
+
+autoload -Uz add-zsh-hook
+
+change-prompt-title() {
+  echo -ne "\e]1;${PWD##*/}\a"
+}
+
+add-zsh-hook chpwd change-prompt-title
+
+# periodic
+#
+# add-zsh-hook chpwd change-prompt-title
+# zplug  "hagkozak/zhooks", use:zhooks.plugin.zsh
+
 zplug "lukechilds/zsh-better-npm-completion"
 zstyle ':completion:*' menu select=2
 
 # httpstat --help
-zplug "b4b4r07/httpstat", \
-    as:command, \
-    use:'(*).sh', \
-    rename-to:'$1'
+# zplug "b4b4r07/httpstat", \
+#     as:command, \
+#     use:'(*).sh', \
+#     rename-to:'$1'
 
 zplug "HaleTom/89ffe32783f89f403bba96bd7bcd1263", \
 		from:gist, \
@@ -119,15 +134,13 @@ zplug load
 
 if command -v pyenv 1>/dev/null 2>&1; then
 	echo 'pyenv found using it'
-  eval "$(pyenv init -)"
+  	eval "$(pyenv init -)"
 	eval "$(pyenv virtualenv-init -)"
-  # source $(pyenv root)/completions/pyenv.zsh
-  pyenv rehash
 fi
-
+PERIODIC=10
 docker-link &
 # Show splash screen
 neofetch
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.rvm/bin"
