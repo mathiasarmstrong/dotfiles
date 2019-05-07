@@ -1,0 +1,192 @@
+"*":
+  Hydrogen:
+    debug: true
+    languageMappings: "{\"javascript\":\"babel es6 javascript\"}"
+    startupCode: "{\"Python 3\":\"print('hello')\", \"javascript\":\"require('babel-register');require('babel-polyfill');\"}"
+  Termrk:
+    defaultHeight: 0
+  "atom-beautify":
+    general:
+      _analyticsUserId: "c606af2a-e7c4-4562-b02b-641ba8e38737"
+    js:
+      beautify_on_save: true
+      default_beautifier: "ESLint Fixer"
+    jsx:
+      brace_style: "collapse-preserve-inline"
+      break_chained_methods: true
+      end_with_newline: true
+  "atom-easy-jsdoc":
+    beta: true
+    useReturns: true
+  "atom-jasmine-es6-snippets":
+    semicolons: true
+  "atom-ternjs":
+    excludeLowerPriorityProviders: true
+    inlineFnCompletion: false
+    inlineFnCompletionDocumentation: true
+    snippetsFirst: true
+    ternServerDependencyBudget: 30000
+    useSnippets: true
+    useSnippetsAndFunction: true
+  "autocomplete-plus":
+    backspaceTriggersAutocomplete: true
+    strictMatching: true
+  "autocomplete-python":
+    caseInsensitiveCompletion: false
+    extraPaths: "$PROJECT"
+    pythonPaths: "/Users/jered/.pyenv/shims/python"
+    useKite: false
+    useSnippets: "all"
+  autosave:
+    enabled: true
+  "browser-plus":
+    currentFile: false
+  core:
+    audioBeep: false
+    closeDeletedFileTabs: true
+    closeEmptyWindows: false
+    disabledPackages: [
+      "language-gfm"
+      "markdown-preview"
+      "flow"
+      "flow-ide"
+      "linter-sass-lint"
+      "auto-indent"
+      "linter-flow"
+      "linter-pylint"
+    ]
+    projectHome: "/Users/jered/code/"
+    reopenProjectMenuCount: 0
+    restorePreviousWindowsOnStart: "no"
+    telemetryConsent: "limited"
+    themes: [
+      "seti-ui"
+      "atom-dark-syntax"
+    ]
+    titleBar: "custom"
+    useTreeSitterParsers: false
+    warnOnLargeFileLimit: 20
+  editor:
+    fontFamily: "Source Code Pro"
+    fontSize: 18
+    preferredLineLength: 120
+    softWrap: true
+    softWrapAtPreferredLineLength: true
+    zoomFontWhenCtrlScrolling: true
+  "exception-reporting":
+    userId: "12dd419b-ed56-1a26-eea6-858da333a161"
+  fonts:
+    fontFamily: "Anonymous Pro"
+  "git-diff-details":
+    enableSyntaxHighlighting: true
+  "git-plus":
+    experimental:
+      useSplitDiff: true
+  "glowing-cursor":
+    cursorWidth: 2
+    glowColor: "#ff0905"
+    glowDistance: 10
+    innerColor: "#ff000a"
+  "highlight-selected":
+    highlightBackground: true
+    ignoreCase: true
+  hugofy:
+    theme: "drop-box"
+  "js-hyperclick":
+    jumpToImport: true
+  kite:
+    showKiteTourOnStartup: false
+  "language-babel":
+    allowLocalOverride: true
+    emmetCSSAutocomplete: true
+  "linter-eslint":
+    autofix:
+      fixOnSave: true
+    disabling:
+      rulesToSilenceWhileTyping: [
+        "*"
+      ]
+  "linter-flow":
+    executablePath: "/usr/local/bin/flow"
+  "linter-markdown":
+    presetStyleGuideWithoutConfig: true
+  "linter-pylint":
+    rcFile: "%p/.pylintrc"
+    workingDirectory: "%p/.."
+  "linter-ui-default":
+    panelHeight: 300
+  "linter-write-good": {}
+  "markdown-pdf":
+    border: "5mm"
+    format: "Letter"
+  "markdown-preview":
+    useGitHubStyle: true
+  "markdown-preview-plus":
+    useGitHubStyle: true
+  "markdown-writer":
+    fileExtension: ".md"
+  minimap:
+    absoluteMode: true
+    plugins:
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
+  "python-tools":
+    pythonPath: "/Users/jered/code/ampush/safari/dragon_service/:/Users/jered/.pyenv/shims/python"
+  "python-yapf":
+    formatOnSave: true
+    yapfStyle: "{based_on_style: google, column_limit: 120}"
+  "rest-client":
+    recent_requests_limit: 15
+  script:
+    cwdBehavior: "Directory of the script"
+    stopOnRerun: true
+  "seti-syntax":
+    themeColor: "Steel"
+  "seti-ui":
+    compactView: true
+    fileIcons: false
+    font: "Default Atom Font"
+    themeColor: "Purple"
+  "split-diff":
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    syncHorizontalScroll: true
+  "svg-preview":
+    openPreviewAutomatically: true
+  "sync-settings":
+    _lastBackupHash: "a8f580255c3b42da330f8cd5539983b5b0de695d"
+    blacklistedKeys: [
+      "pull-requests.githubAuthorizationToken"
+      "node-debugger.nodePath"
+    ]
+    gistId: "f547bb6b9b540408739afa30e5551f63"
+    personalAccessToken: "8ddd5fa8e551520d98a71c191912f995bc452bc1"
+    quietUpdateCheck: true
+    removeObsoletePackages: true
+  "tool-bar":
+    fullWidth: false
+    iconSize: "16px"
+    visible: false
+  "tool-bar-markdown-writer":
+    grammars: [
+      "source.gfm"
+      "source.gfm.nvatom"
+      "source.litcoffee"
+      "text.md"
+      "text.plain"
+      "text.plain.null-grammar"
+      "*.md"
+    ]
+    visibility: "showToolbarOnMarkdown"
+  "tree-view":
+    alwaysOpenExisting: true
+    autoReveal: true
+    focusOnReveal: false
+    hideIgnoredNames: true
+    squashDirectoryNames: true
+  welcome:
+    showOnStartup: false
+  zentabs:
+    maximumOpenedTabs: 8
+    neverCloseUnsaved: true

@@ -1,146 +1,99 @@
-DEFAULT_USER=$USER
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export PATH="/usr/local/sbin:$PATH"
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export ZPLUG_HOME=/usr/local/opt/zplug
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/jeredmccullough/.oh-my-zsh"
 
-source $ZPLUG_HOME/init.zsh
-# We want bash specific ones overwritten
-source ~/.exports
-source ~/.functions
-source ~/.aliases
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 
-ulimit -n 21504
-# ulimit -u 2000
-ulimit -c 2000
-ulimit -s 10000
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-# export PIPENV_VENV_IN_PROJECT=1
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-zplug "zsh-users/zsh-history-substring-search"
-zplug "plugins/git", from:oh-my-zsh
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "b4b4r07/enhancd", use:init.sh
-zplug "plugins/npm", from:oh-my-zsh
-zplug "plugins/brew", from:oh-my-zsh
-zplug "plugins/docker", from:oh-my-zsh
-zplug "plugins/docker-machine", from:oh-my-zsh
-# https://github.com/zsh-users/zsh-autosuggestions requires brew
-zplug "zsh-users/zsh-autosuggestions"
-# https://github.com/zsh-users/zsh-completions requires brew
-zplug "zsh-users/zsh-completions"
-zplug "lukechilds/zsh-better-npm-completion", defer:2
-zplug "rupa/z", use:z.sh
-# zplug "knu/z", use:z.sh
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-unalias run-help
-autoload run-help
-HELPDIR=/usr/local/share/zsh/help
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
 
-# zplug "plugins/rvm", from:oh-my-zsh, lazy:1
-export NVM_AUTO_USE=true
-zplug "lukechilds/zsh-nvm"
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
 
-# auto-pipenv.zsh
-# zplug "djdaniels90/759dc65d7775f76e5117337b59dc4833", from:gist
-# zplug "plugins/pyenv", from:oh-my-zsh
-zplug "paulmelnikow/zsh-startup-timer"
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
 
-if [ $commands[kubectl] ]; then
-	zplug "plugins/kubectl", from:oh-my-zsh
-	source <(kubectl completion zsh)
-fi
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-zplug "plugins/virtualenvwrapper", from:oh-my-zsh
-# zplug "plugins/pip", from:oh-my-zsh
-# [ -z "${PIPENV_ACTIVE}" ] && {
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
 #
-# 		# eval "$(pipenv --completion)"
-# }
-zplug "tysonwolker/iterm-tab-colors"
-
-zplug "zlsun/solarized-man"
-zplug "bric3/nice-exit-code"
-zplug "arzzen/calc.plugin.zsh"
-
-
-autoload -Uz add-zsh-hook
-
-change-prompt-title() {
-  echo -ne "\e]1;${PWD##*/}\a"
-}
-
-add-zsh-hook chpwd change-prompt-title
-
-# periodic
-#
-# add-zsh-hook chpwd change-prompt-title
-# zplug  "hagkozak/zhooks", use:zhooks.plugin.zsh
-
-zplug "lukechilds/zsh-better-npm-completion"
-zstyle ':completion:*' menu select=2
-
-# httpstat --help
-# zplug "b4b4r07/httpstat", \
-#     as:command, \
-#     use:'(*).sh', \
-#     rename-to:'$1'
-
-zplug "HaleTom/89ffe32783f89f403bba96bd7bcd1263", \
-		from:gist, \
-		as:command, \
-		use:'(*).sh', \
-    rename-to:'colortest'
-
-zplug "iam4x/zsh-iterm-touchbar"
-
-# The following lines were added by compinstall
-zstyle :compinstall filename '~/.zshrc'
-
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=5000
-SAVEHIST=5000
-setopt appendhistory autocd extendedglob notify
-bindkey -v
-# End of lines configured by zsh-newuser-install
-
-#######################
-# THEME Configuration #
-#######################
-# Autoload prompt if not in interactive
-if [[ $- = *i* ]]; then
-	source ~/.powerline9k_cfg
-	zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
-	# zplug "nojhan/liquidprompt" use:'(*).sh'
-fi
-
-# Auto install stuff if needed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# Then, source plugins and add commands to $PATH
-zplug load
-
-if command -v pyenv 1>/dev/null 2>&1; then
-	echo 'pyenv found using it'
-  	eval "$(pyenv init -)"
-	eval "$(pyenv virtualenv-init -)"
-fi
-PERIODIC=10
-docker-link &
-# Show splash screen
-neofetch
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$PATH:$HOME/.rvm/bin"

@@ -1,0 +1,69 @@
+/*
+ * Your Stylesheet
+ *
+ * This stylesheet is loaded when Atom starts up and is reloaded automatically
+ * when it is changed and saved.
+ *
+ * Add your own CSS or Less to fully customize Atom.
+ * If you are unfamiliar with Less, you can read more about it here:
+ * http://lesscss.org
+ */
+
+
+/*
+ * Examples
+ * (To see them, uncomment and save)
+ */
+
+// style the background color of the tree view
+.tree-view .directory {
+  // & > .list-item:before {
+  //   visibility: visible; // hide arrows
+  // }
+  //
+  // .selected > .header.list-item ~ .entries.list-tree {
+  //   background: linear-gradient(to right, transparent 24px, darken(@base-background-color, 30%) 24px, darken(@base-background-color, 30%) 25px, transparent 25px);
+  // }
+  //
+  // .header.list-item:hover ~ .entries.list-tree {
+  //   background: linear-gradient(to right, transparent 24px, @text-color 24px, @text-color 25px, transparent 25px);
+  // }
+}
+
+// style the background and foreground colors on the atom-text-editor-element itself
+atom-text-editor {
+  // color: white;
+  // background-color: hsl(180, 24%, 12%);
+}
+
+// To style other content in the text editor's shadow DOM, use the ::shadow expression
+atom-text-editor::shadow .cursor {
+  // border-color: blue;
+}
+
+.indent-guide-improved {
+  background-color: darken(grey, 25%);
+  &.indent-guide-stack {
+    background-color: darken(grey, 5%);;
+    &.indent-guide-active {
+      background-color: fade(green, 80%);
+    }
+  }
+}
+
+// Remove that stupid gutter that makes it look like everything is indented
+.atom-text-editor .scroll-view, atom-text-editor .scroll-view {
+  padding-left: 2px;
+}
+
+// Make the selected item in the command palette a bit more clear
+.command-palette {
+  li.selected {
+    background-color: #cc3e44;
+  }
+}
+
+// Hightlight the matched brackets for current cursor scope
+// atom-text-editor::shadow .bracket-matcher .region {
+//   background-color: fade(green, 50%);
+// }
