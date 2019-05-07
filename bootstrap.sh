@@ -27,10 +27,14 @@ brew_install_font_tools
 
 brew_install_db
 brew_install_ctf_tools
-brew_install_licensed_apps
-brew_install_gaming
-brew_install_gamedev
-brew_install_communication
+# brew_install_licensed_apps
+# brew_install_gaming
+# brew_install_gamedev
+# brew_install_communication
 brew_install_browsers
 brew_install_media_tools
 brew_install_misc
+brew_install_upstart
+
+# install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
