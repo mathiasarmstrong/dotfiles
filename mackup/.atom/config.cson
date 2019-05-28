@@ -6,6 +6,14 @@
   Termrk:
     defaultHeight: 0
   "atom-beautify":
+    css:
+      align_assignments: true
+      beautify_on_save: true
+      end_with_newline: true
+      force_indentation: true
+      no_lead_zero: true
+      preserve_newlines: true
+      selector_separator_newline: true
     general:
       _analyticsUserId: "c606af2a-e7c4-4562-b02b-641ba8e38737"
     js:
@@ -15,6 +23,13 @@
       brace_style: "collapse-preserve-inline"
       break_chained_methods: true
       end_with_newline: true
+    sass:
+      beautify_on_save: true
+    scss:
+      beautify_on_save: true
+      default_beautifier: "SassConvert"
+      no_lead_zero: true
+      preserve_newlines: true
   "atom-easy-jsdoc":
     beta: true
     useReturns: true
@@ -45,22 +60,21 @@
     audioBeep: false
     closeDeletedFileTabs: true
     closeEmptyWindows: false
+    debugLSP: true
     disabledPackages: [
-      "language-gfm"
-      "markdown-preview"
       "flow"
       "flow-ide"
-      "linter-sass-lint"
-      "auto-indent"
       "linter-flow"
-      "linter-pylint"
+      "language-gfm"
+      "markdown-preview"
+      "pretty-json"
     ]
     projectHome: "/Users/jered/code/"
     reopenProjectMenuCount: 0
     restorePreviousWindowsOnStart: "no"
     telemetryConsent: "limited"
     themes: [
-      "seti-ui"
+      "one-dark-ui"
       "atom-dark-syntax"
     ]
     titleBar: "custom"
@@ -68,15 +82,24 @@
     warnOnLargeFileLimit: 20
   editor:
     fontFamily: "Source Code Pro"
-    fontSize: 18
-    preferredLineLength: 120
+    fontSize: 13
+    preferredLineLength: 100
+    showInvisibles: true
     softWrap: true
     softWrapAtPreferredLineLength: true
+    tabType: "soft"
     zoomFontWhenCtrlScrolling: true
+  "emmet-jsx-css-modules":
+    styleObjectName: "styles"
   "exception-reporting":
     userId: "12dd419b-ed56-1a26-eea6-858da333a161"
+  "foldername-tabs":
+    filenameFirst: true
   fonts:
     fontFamily: "Anonymous Pro"
+  "fuzzy-finder":
+    scoringSystem: "fast"
+    useRipGrep: true
   "git-diff-details":
     enableSyntaxHighlighting: true
   "git-plus":
@@ -93,6 +116,13 @@
   hugofy:
     theme: "drop-box"
   "js-hyperclick":
+    extensions: [
+      ".jsx"
+      ""
+      "js"
+      ".json"
+      ".node"
+    ]
     jumpToImport: true
   kite:
     showKiteTourOnStartup: false
@@ -113,6 +143,8 @@
   "linter-pylint":
     rcFile: "%p/.pylintrc"
     workingDirectory: "%p/.."
+  "linter-rubocop":
+    disableWhenNoConfigFile: true
   "linter-ui-default":
     panelHeight: 300
   "linter-write-good": {}
@@ -130,6 +162,8 @@
     plugins:
       "highlight-selected": true
       "highlight-selectedDecorationsZIndex": 0
+  "pretty-json":
+    prettifyOnSaveJSON: true
   "python-tools":
     pythonPath: "/Users/jered/code/ampush/safari/dragon_service/:/Users/jered/.pyenv/shims/python"
   "python-yapf":
@@ -155,13 +189,13 @@
   "svg-preview":
     openPreviewAutomatically: true
   "sync-settings":
-    _lastBackupHash: "a8f580255c3b42da330f8cd5539983b5b0de695d"
+    _lastBackupHash: "3b12f555a3a859d37533a4ae8e365c61cb27d24b"
     blacklistedKeys: [
       "pull-requests.githubAuthorizationToken"
       "node-debugger.nodePath"
     ]
     gistId: "f547bb6b9b540408739afa30e5551f63"
-    personalAccessToken: "8ddd5fa8e551520d98a71c191912f995bc452bc1"
+    personalAccessToken: "bd0baad8af2dc35078a9dd60f085380ee6de627d"
     quietUpdateCheck: true
     removeObsoletePackages: true
   "tool-bar":
@@ -187,6 +221,36 @@
     squashDirectoryNames: true
   welcome:
     showOnStartup: false
+  whitespace: {}
   zentabs:
     maximumOpenedTabs: 8
     neverCloseUnsaved: true
+".css.scss.source":
+  editor:
+    tabType: "auto"
+".editorconfig.source":
+  editor:
+    autoIndent: false
+    autoIndentOnPaste: false
+    tabType: "auto"
+".html.ruby.text":
+  editor:
+    tabType: "auto"
+".js.rails.source source.jquery.js":
+  editor:
+    tabType: "auto"
+".rails.ruby.source":
+  editor:
+    tabType: "auto"
+".ruby.source.sql":
+  editor:
+    tabType: "auto"
+".sass.source":
+  editor:
+    tabType: "auto"
+".sassdoc.source":
+  editor:
+    tabType: "auto"
+".source.yaml":
+  editor:
+    tabType: "auto"

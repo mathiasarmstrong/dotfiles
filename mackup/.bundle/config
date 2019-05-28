@@ -1,0 +1,3 @@
+---
+BUNDLE_UPSTART__JFROG__IO: "jered.mccullough:AKCp5cckSQ34DEV43DFaiNg3ZsXU5QvV4NpFY6eKUkYfTqtdbn7pDxZMfWoYKehRAHRJjYMmz"
+BUNDLE_BUILD__NOKOGIRI: "--use-system-libraries"

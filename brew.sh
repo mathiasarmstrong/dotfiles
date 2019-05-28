@@ -238,4 +238,7 @@ brew_install_misc() {
 brew_install_upstart(){
 	# TODO: update for all Upstart deps
 	brew tap heroku/brew && brew install heroku
+	brew install exiftool
+	brew install libpq postgres
+	brew install nvm
 }
