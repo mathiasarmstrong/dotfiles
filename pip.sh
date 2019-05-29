@@ -18,4 +18,3 @@ function py_data_analysis {
 	pip3 install numpy
 	pip3 install pandas
 }
-# 340b5f225c42e5a9be83f1e9895eef6ebad7ea7f
